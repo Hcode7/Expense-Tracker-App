@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<div class="flex justify-center p-3">
+    <br>
+    <form action="" class="max-w-sm bg-white p-6 shadow rounded text-center" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input style="cursor: pointer;" type="file" class="bg-gray-500 text-white shadow rounded p-1 text-center items-center flex gap-2" name="file" id="file">
+        <br>
+        <button style="cursor: pointer;" type="submit" class="bg-yellow-500 text-white hover:text-white hover:bg-yellow-400 p-2 rounded">Upload</button>
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<br>
+<div class="container mx-auto">
+    <div class="max-w-sm shadow rounded p-4 flex justify-center">
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="border border-gray-900 rounded" placeholder="Name ">
+            <br>
+            <br>
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description" class="border border-gray-900 rounded" placeholder="Subtitle">
+            <br>
+
+            <br>
+            <button type="submit" class="bg-gray-500 p-3 rounded-lg text-white" style="cursor: pointer;">ADD</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

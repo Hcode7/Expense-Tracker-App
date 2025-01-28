@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Expense Tracker</title>
+</head>
+<body>
+    <br>
+    <nav class="width-w bg-white shadow flex items-center justify-between">
+        <div>
+            <ul class="text-xl font-bold m-5 py-2"><a href="{% url 'books' %}">Rumi Press</a></ul>
+        </div>
+        <div>
+            <form action="" method="get">
+                <input type="text" name="search" class="border border-gray-500 rounded text-center p-2" placeholder="Search...">
+                <button type="submit" class="bg-gray-400 p-2 rounded shadow text-white " style="cursor: pointer;">Search</button>
+            </form>
+        </div>
+
+        {% if request.user.is_authenticated %}
+        
+        <div class="relative m-5 flex gap-2 p-2 items-center">
+          <br>
+            <a href="{% url 'categories' %}" class="bg-gray-300 rounded shadow p-2">Cateogires</a>
+            <button id="dropdownButton" class="flex items-center space-x-2 bg-gray-700 px-4 py-2 rounded hover:bg-gray-600">
+              <span class="text-white">{{ request.user.username }}</span>
+              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div id="dropdownMenu" class="absolute hidden bg-gray-700 text-white rounded mt-2 w-40 shadow">
+              <a href="{% url 'add_category' %}" class="block px-4 py-2 hover:bg-gray-600 text-white">Add Category</a>
+              <a href="{% url 'add_book' %}" class="block px-4 py-2 hover:bg-gray-600 text-white">Add Book</a>
+              {% if request.user.is_staff %}
+                <a href="{% url 'import' %}" class="block px-3 py-2 hover:bg-gray-600 text-white">Import Data</a>
+              {% endif %}
+              <a href="{% url 'report' %}" class="block px-3 py-2 hover:bg-gray-600 text-white">Report</a>
+              <a href="{% url 'logout' %}" class="block px-4 py-2 bg-red-500 hover:bg-red-600 text-white">Logout</a>
+            </div>
+        </div>
+
+        {% else %}
+        <div class="m-5">
+          <a href="{% url 'register' %}" class="bg-gray-400 rounded shadow p-2 px-4 py-2 text-white hover:text-white hover:bg-gray-500">Register</a>
+          <a href="{% url 'login' %}" class="bg-gray-500 rounded shadow p-2 px-4 py-2 text-white hover:text-white hover:bg-gray-600">Login</a>
+        </div>
+        {% endif %}
+
+    </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const dropdownButton = document.getElementById('dropdownButton');
+          const dropdownMenu = document.getElementById('dropdownMenu');
+          
+          dropdownButton.addEventListener('click', function () {
+            dropdownMenu.classList.toggle('hidden');
+          });
+      
+          document.addEventListener('click', function (event) {
+            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+              dropdownMenu.classList.add('hidden');
+            }
+          });
+        });
+    </script>
+      
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>

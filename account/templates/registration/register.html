@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<br>
+<br>
+<div class="container">
+    <div class="flex justify-center">
+        <div class="max-w-sm shadow rounded p-6">
+            <span class="text-2xl text-center flex justify-center font-bold">Register</span>
+            <br>
+            <form action="" method="post">
+                {% csrf_token %}
+                <label for="username">Username</label>
+                <input type="text" name="username" class="border border-gray-600 rounded p-2" id="username" placeholder="Username">
+                <br>
+                <br>
+                <label for="password1">Password</label>
+                <input type="password" class="border border-gray-600 rounded shadow p-2" name="password1" id="password1" placeholder="Password">
+                <br>
+                <br>
+                <label for="password2">Confirm Password</label>
+                <input type="password" class="border border-gray-600 rounded shadow p-2" name="password2" id="password2" placeholder="Confirm Password">
+                <br>
+                <br>
+                <button type="submit" class="bg-gray-500 p-2 text-white rounded flex justify-center">Register</button>
+            </form>
+        </div>
+        
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% block title %}<title>Report Chart</title>{% endblock title %}
+</head>
+<body>
+    <img src="data:image/png;base64,{{ chart_data }}" alt="Distribution Chart">
+</body>
+</html>
+
+{% endblock content %}

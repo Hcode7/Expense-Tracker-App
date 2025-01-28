@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container mx-auto">
+    <br>
+    <div class="flex flex-wrap justify-center gap-6">
+        <br>
+        {% for category in page_obj %}
+        <div class="max-w-sm shadow round p-3">
+            
+            <h3 class="text-xl">{{ category.name }}</h3>
+            <p class="text-sm">{{ category.description }}</p>
+            <br>
+            {% if request.user.is_staff or user_manager %}
+            <a href="{% url 'delete_book' category.id %}" class="bg-red-500 rounded p-2 text-white hover:bg-red-400 hover:text-white">Delete</a>
+            <a href="{% url 'update_category' category.id %}" class="bg-gray-500 rounded p-2 text-white hover:bg-gray-400 hover:text-white">Update</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+    <br>
+    <div class="flex justify-center">
+        <nav class="inline-flex shadow rounded-lg">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="px-3 py-2 border rounded-l-lg hover:bg-gray-200">
+                    Previous
+                </a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+            <a href="?page={{ num }}" class="px-3 py-2 border hover:bg-gray-200 {% if page_obj.number == num %} bg-gray-300 font-bold{% endif %}">
+                {{ num }}
+            </a>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="px-3 py-2 border rounded-r-lg hover:bg-gray-200">
+                Next
+            </a>
+            {% endif %}
+        </nav>
+    </div>
+
+
+    <br>
+</div>
+{% endblock content %}
