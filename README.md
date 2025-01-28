@@ -1,10 +1,20 @@
-# Book Management System
+# Book Distribution System 📚
 
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://python.org)
 [![Django](https://img.shields.io/badge/django-4.2-brightgreen)](https://djangoproject.com)
 
 A Django-based system for managing books with advanced search capabilities and user access control.
 
+## 🎯 Project Overview
+**Business Need:** Transition from error-prone spreadsheet tracking to an automated web solution for managing 50,000+ technical books across 15+ categories including Data Science, Python, and Business Analytics.
+
+**Key Solutions:**
+- Real-time expense tracking per category
+- Secure CRUD operations for inventory management
+- Automated reporting and data import/export
+- Role-based access control for managers
+
+  
 ## Features
 
 - **Book Management**
